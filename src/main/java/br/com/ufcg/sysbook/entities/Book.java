@@ -1,15 +1,21 @@
 package br.com.ufcg.sysbook.entities;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Book {
+public class Book implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String titulo;
     private String author_name;
     private String text;
 
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
     private Category category;
 
     public Book() {
